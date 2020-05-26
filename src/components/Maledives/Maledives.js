@@ -7,9 +7,15 @@ const client = contentful.createClient({
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
 client.getEntry('6ylWkQtDSaMxP1CI8YJJ2z')
-.then((entry) => console.log(entry))
+.then((entry) => {
+  client.getAsset('70P4CEgtnKlOREBQUhZA8C')
+  .then((asset) => 
+  document.querySelector(".picture").setAttribute("src", asset.fields.file.url))
+  document.querySelector(".title").innerHTML = entry.fields.title
+  document.querySelector(".subtitle").innerHTML = entry.fields.subtitle
+  document.querySelector(".text").innerHTML = entry.fields.description
+})
 .catch(console.error)
-
 
 
 
