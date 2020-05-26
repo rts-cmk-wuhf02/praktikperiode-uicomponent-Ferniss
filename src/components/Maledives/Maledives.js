@@ -1,5 +1,5 @@
-//import react from "react"
-
+import React from 'react';
+import { css } from "emotion";
 const contentful = require('contentful')
 const client = contentful.createClient({
   space: 'vrozao3z6bfk',
@@ -12,11 +12,35 @@ client.getEntry('6ylWkQtDSaMxP1CI8YJJ2z')
   .then((asset) => 
   document.querySelector(".picture").setAttribute("src", asset.fields.file.url))
   document.querySelector(".title").innerHTML = entry.fields.title
-  document.querySelector(".subtitle").innerHTML = entry.fields.subtitle
+  document.querySelector("#subtitle").innerHTML = entry.fields.subtitle
   document.querySelector(".text").innerHTML = entry.fields.description
 })
 .catch(console.error)
 
+const maldediv = () => (
+
+
+  <div className="Maledives">
+<button className={css`background-color: #000000;`}>
+virker det her
+    </button>
+
+
+        <img className="picture" src="" alt="">  
+        </img>
+    
+        <h2 id="subtitle" className={css`background-color: red;`}>
+        </h2>
+
+        <h1 className="title">
+        </h1>
+          
+        <p id="" className="text">
+        </p>
+        </div>
+      
+)
+export default maldediv;
 
 
 // client.getEntries()
