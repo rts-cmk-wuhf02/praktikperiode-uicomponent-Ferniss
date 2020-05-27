@@ -1,5 +1,20 @@
 import React from 'react';
-import { css } from "emotion";
+import { cx, css } from "emotion";
+
+const maledivsTemplate = css`
+  background-color: white;
+  width: 100%;
+  height: 441px;
+  text-align-last: start;
+  padding: 10px;
+  border: 1px solid;
+  margin: 10px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+`
+const padding = css`
+  padding-left: 15px;
+`
 const contentful = require('contentful')
 const client = contentful.createClient({
   space: 'vrozao3z6bfk',
@@ -20,25 +35,18 @@ client.getEntry('6ylWkQtDSaMxP1CI8YJJ2z')
 const maldediv = () => (
 
 
-  <div id="Maledives" className={css`
-  background-color: white;
-  width: 372px;
-  text-align-last: start;
-  padding: 10px;
-  border: 1px solid;
-  margin: 10px;
-  `}>
+  <div id="Maledives" className={cx(maledivsTemplate)}>
 
         <img id="MaledivesPicture" src="" alt="">  
         </img>
     
-        <h2 id="MaledivesSubtitle" className={css`padding-left: 15px;`}>
+        <h2 id="MaledivesSubtitle" className={cx(padding)}>
         </h2>
 
-        <h1 id="MaledivesTitle" className={css`padding-left: 15px;`}>
+        <h1 id="MaledivesTitle" className={cx(padding)}>
         </h1>
           
-        <p id="MaledivesText" className={css`padding-left: 15px;`}>
+        <p id="MaledivesText" className={cx(padding)}>
         </p>
         </div>
       

@@ -3,19 +3,18 @@ import { cx, css } from "emotion";
 
 const outdoorTemplate = css`
   background-color: white;
+  width: 75%;
   height: 441px;
   text-align-last: start;
   padding: 10px;
   border: 1px solid;
   margin: 10px;
-  grid-column-start: 2;
-  grid-column-end: 5;
 `
 const padding = css`
   padding-left: 15px;
 `
 const smallpicture = css`
-  width: 20%;
+  width: 200px;
   height: 20%;
 `
 
@@ -42,7 +41,7 @@ client.getEntry('3d7ULDGvCS4tZyEktPbAva')
 })
 .catch(console.error)
 
-const outdoor = () => (
+const delivery = () => (
 
 
   <div id="Outdoor" className={cx(outdoorTemplate)}>
@@ -68,7 +67,7 @@ const outdoor = () => (
         </div>
       
 )
-export default outdoor;
+export default delivery;
 
 
 // client.getEntries()
