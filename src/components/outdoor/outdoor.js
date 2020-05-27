@@ -6,21 +6,21 @@ const client = contentful.createClient({
   environment: 'master', // defaults to 'master' if not set
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
-client.getEntry('6ylWkQtDSaMxP1CI8YJJ2z')
+client.getEntry('3d7ULDGvCS4tZyEktPbAva')
 .then((entry) => {
-  client.getAsset('70P4CEgtnKlOREBQUhZA8C')
+  client.getAsset('4F6aeGEl46bVXOJy8OXzYG')
   .then((asset) => 
-  document.querySelector("#MaledivesPicture").setAttribute("src", asset.fields.file.url))
-  document.querySelector("#MaledivesTitle").innerHTML = entry.fields.title
-  document.querySelector("#MaledivesSubtitle").innerHTML = entry.fields.subtitle
-  document.querySelector("#MaledivesText").innerHTML = entry.fields.description
+  document.querySelector("#picture").setAttribute("src", asset.fields.file.url))
+  document.querySelector("#title").innerHTML = entry.fields.title
+  document.querySelector("#subtitle").innerHTML = entry.fields.subtitle
+  document.querySelector("#text").innerHTML = entry.fields.description
 })
 .catch(console.error)
 
-const maldediv = () => (
+const outdoor = () => (
 
 
-  <div id="Maledives" className={css`
+  <div id="Outdoor" className={css`
   background-color: white;
   width: 372px;
   text-align-last: start;
@@ -29,21 +29,21 @@ const maldediv = () => (
   margin: 10px;
   `}>
 
-        <img id="MaledivesPicture" src="" alt="">  
+        <img id="picture" src="" alt="">  
         </img>
     
-        <h2 id="MaledivesSubtitle" className={css`padding-left: 15px;`}>
+        <h2 id="subtitle" className={css`padding-left: 15px;`}>
         </h2>
 
-        <h1 id="MaledivesTitle" className={css`padding-left: 15px;`}>
+        <h1 id="title" className={css`padding-left: 15px;`}>
         </h1>
           
-        <p id="MaledivesText" className={css`padding-left: 15px;`}>
+        <p id="text" className={css`padding-left: 15px;`}>
         </p>
         </div>
       
 )
-export default maldediv;
+export default outdoor;
 
 
 // client.getEntries()
