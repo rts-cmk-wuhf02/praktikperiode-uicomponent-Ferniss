@@ -4,7 +4,7 @@ import { cx, css } from "emotion";
 const outdoorTemplate = css`
   background-color: white;
   width: 75%;
-  height: 441px;
+  height: 272px;
   text-align-last: start;
   padding: 10px;
   border: 1px solid;
@@ -41,7 +41,7 @@ client.getEntry('3d7ULDGvCS4tZyEktPbAva')
 })
 .catch(console.error)
 
-const delivery = () => (
+const check = () => (
 
 
   <div id="Outdoor" className={cx(outdoorTemplate)}>
@@ -67,7 +67,7 @@ const delivery = () => (
         </div>
       
 )
-export default delivery;
+export default check;
 
 
 // client.getEntries()

@@ -3,8 +3,8 @@ import { cx, css } from "emotion";
 
 const outdoorTemplate = css`
   background-color: white;
-  width: 75%;
-  height: 441px;
+  width: 100%;
+  height: 372px;
   text-align-last: start;
   padding: 10px;
   border: 1px solid;
@@ -41,7 +41,7 @@ client.getEntry('3d7ULDGvCS4tZyEktPbAva')
 })
 .catch(console.error)
 
-const parcels = () => (
+const collection = () => (
 
 
   <div id="Outdoor" className={cx(outdoorTemplate)}>
@@ -67,7 +67,7 @@ const parcels = () => (
         </div>
       
 )
-export default parcels;
+export default collection;
 
 
 // client.getEntries()

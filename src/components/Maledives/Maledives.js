@@ -4,7 +4,7 @@ import { cx, css } from "emotion";
 const maledivsTemplate = css`
   background-color: white;
   width: 100%;
-  height: 441px;
+  height: 471px;
   text-align-last: start;
   padding: 10px;
   border: 1px solid;
