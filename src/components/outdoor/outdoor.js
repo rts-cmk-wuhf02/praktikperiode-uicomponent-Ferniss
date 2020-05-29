@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { cx, css } from "emotion";
 
 const outdoorTemplate = css`
@@ -10,6 +10,7 @@ const outdoorTemplate = css`
   margin: 10px;
   grid-column-start: 2;
   grid-column-end: 5;
+  display: flex;
 `
 const padding = css`
   padding-left: 15px;
@@ -18,66 +19,65 @@ const smallpicture = css`
   width: 20%;
   height: 20%;
 `
+const bigpicture = css`
+  width: 100%;
+  height: 20%;
+`
 
 const contentful = require('contentful')
 const client = contentful.createClient({
   space: 'vrozao3z6bfk',
-  environment: 'master', // defaults to 'master' if not set
+  environment: 'master',
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
-client.getEntry('3d7ULDGvCS4tZyEktPbAva')
-.then((entry) => {
-  client.getAssets('4F6aeGEl46bVXOJy8OXzYG')
-  .then((asset) => {
 
-      document.querySelector("#picture").setAttribute("src", asset.items[0].fields.file.url)
-      document.querySelector("#picture1").setAttribute("src", asset.items[1].fields.file.url)
-      document.querySelector("#picture2").setAttribute("src", asset.items[2].fields.file.url)
-      document.querySelector("#picture3").setAttribute("src", asset.items[3].fields.file.url)
-      document.querySelector("#title").innerHTML = entry.fields.title
-      document.querySelector("#subtitle").innerHTML = entry.fields.subtitle
-      document.querySelector("#text").innerHTML = entry.fields.description
-  }
-  )
-})
-.catch(console.error)
 
-const outdoor = () => (
+function Outdoor() {
+  let [content, setContent] = useState({ smallImages: [] });
+  useEffect(() => {
+    client.getEntry('3d7ULDGvCS4tZyEktPbAva')
+      .then((entry) => {
+        client.getAssets('4F6aeGEl46bVXOJy8OXzYG')
+        .then((asset) => {
+          //console.log(asset)
+          asset.items.forEach(item => {
+            //console.log(item.fields.hasOwnProperty("file"))
+          })
+
+          setContent({
+            title: entry.fields.title,
+            subtitle: entry.fields.subtitle,
+            description: entry.fields.description,
+            bigImage: asset.items[4].fields.file.url,
+            smallImages: [
+              asset.items[1].fields.file.url,
+              asset.items[2].fields.file.url,
+              asset.items[3].fields.file.url
+            ]
+          })
+        }
+        )
+      })
+      .catch(console.error)
+  })
+  return (
 
 
   <div id="Outdoor" className={cx(outdoorTemplate)}>
+        <div>
+          <img src={content.bigImage} alt="" className={cx(bigpicture)} />
+        </div>
+        <div>
+        <h2 className={cx(padding)}>{ content.subtitle }</h2>
+        <h1 className={cx(padding)}>{ content.title }</h1>
+        <p className={cx(padding)}>{ content.description }</p>
 
-        <img id="picture" src="" alt="">  
-        </img>
-    
-        <h2 id="subtitle" className={cx(padding)}>
-        </h2>
-
-        <h1 id="title" className={cx(padding)}>
-        </h1>
-          
-        <p id="text" className={cx(padding)}>
-        </p>
-        <img id="picture1" src="" alt="" className={cx(smallpicture)}>  
-        </img>
-        <img id="picture2" src="" alt="" className={cx(smallpicture)}>  
-        </img>
-        <img id="picture3" src="" alt="" className={cx(smallpicture)}>  
-        </img>
+        { content.smallImages.map(url => 
+          <img src={url} alt="" className={cx(smallpicture)} key={url} />  
+        ) }
+        </div>
 
         </div>
       
-)
-export default outdoor;
-
-
-// client.getEntries()
-// .then(function (entries) {
-//   // log the title for all the entries that have it
-//   entries.items.forEach(function (entry) {
-//       console.log("Hej")
-//     if(entry.fields.title) {
-//       console.log(entry.fields.title)
-//     }
-//   })
-// })
+)}
+export default Outdoor;
