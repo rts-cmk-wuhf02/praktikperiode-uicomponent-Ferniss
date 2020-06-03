@@ -18,34 +18,24 @@ const client = contentful.createClient({
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
 
-export default function Delivery() {
-    let [content, setContent] = useState({ images: [] });
+export default function Parcels() {
+    let [content, setContent] = useState({});
     
     useEffect(() => {
-        client.getEntries("Travel")
+        client.getEntries("Services")
         .then(response => {
             let item = response.items[0].fields;
-            let images = item.images.map(image => image.fields.file.url);
-            let bigImage = item.images.shift();
             setContent({
                 title: item.title,
-                subtitle: item.subtitle,
                 description: item.description,
-                bigImage,
-                images
+                image: item.image
             });
         })
     })
     return (
         <div className={cx(travel)}>
-              <img src={ content.bigImage } alt="" />
-              <section>
-                { content.images.map(url =>
-                    <img src={ url } alt="" key={url} />    
-                ) }
-            </section>
+              <img src={ content.image } alt="" />
             <h1>{ content.title }</h1>
-            <h2>{ content.subtitle }</h2>
             <p>{ content.description }</p>
         </div>
     )

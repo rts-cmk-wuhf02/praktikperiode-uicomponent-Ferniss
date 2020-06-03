@@ -19,32 +19,35 @@ const client = contentful.createClient({
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
 
-export default function Maledives() {
+export default function TravelPortrait() {
     let [content, setContent] = useState({ images: [] });
     
     useEffect(() => {
         client.getEntries("Travel")
         .then(response => {
             let item = response.items[0].fields;
-            let images = item.images.map(image => image.fields.file.url);
+            
+            //let images = item.images.map(image => image.fields.file.url);
             let bigImage = item.images.shift();
             setContent({
                 title: item.title,
                 subtitle: item.subtitle,
                 description: item.description,
                 bigImage,
-                images
+               // images
             });
+        }).then(data =>{
+            
         })
     })
     return (
         <div className={cx(travel)}>
               <img src={ content.bigImage } alt="" />
-              <section>
+              {/* <section>
                 { content.images.map(url =>
                     <img src={ url } alt="" key={url} />    
                 ) }
-            </section>
+            </section> */}
             <h1>{ content.title }</h1>
             <h2>{ content.subtitle }</h2>
             <p>{ content.description }</p>

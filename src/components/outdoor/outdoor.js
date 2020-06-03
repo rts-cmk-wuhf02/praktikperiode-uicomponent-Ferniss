@@ -22,7 +22,7 @@ const client = contentful.createClient({
   accessToken: 'KTkNhkspKPVbfBzlN98d-R36llsoIaZTohcPvcIOHqU'
 })
 
-export default function Outdoor() {
+export default function TravelLandscape() {
     let [content, setContent] = useState({ images: [] });
     
     useEffect(() => {
